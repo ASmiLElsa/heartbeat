@@ -22,7 +22,7 @@ public class Server {
 	public static final class DefaultObjectAction implements ObjectAction {
 
 		public Object doAction(Object rev, Server server) {
-			System.out.println("处理并返回:"+rev);
+//			System.out.println("处理并返回:"+rev);
 			return rev;
 		}
 		
@@ -96,7 +96,7 @@ public class Server {
 							ObjectInputStream ois = new ObjectInputStream(in);
 							Object obj = ois.readObject();
 							lastReceiveTime = System.currentTimeMillis();
-							System.out.println("接收：\t" + obj);
+//							System.out.println("接收：\t" + obj);
 							ObjectAction oa = actionMapping.get(obj.getClass());
 							oa = oa == null? new DefaultObjectAction():oa;
 							Object out = oa.doAction(obj, Server.this);
@@ -126,7 +126,7 @@ public class Server {
 					e.printStackTrace();
 				}
 			}
-			System.out.println("关闭： " + s.getRemoteSocketAddress());
+			System.out.println("断开连接：" + s.getRemoteSocketAddress());//断开连接，心跳没了
 		}
 	}
 
